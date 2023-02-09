@@ -32,7 +32,7 @@
 	<script type="module">
 
 		import * as THREE from 'three';
-		import { VRButton } from 'three/addons/webxr/VRButton.js';
+		import { ARButton } from 'three/addons/webxr/ARButton.js';
 		import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 		import { OculusHandModel } from 'three/addons/webxr/OculusHandModel.js';
 		import { createText } from 'three/addons/webxr/Text2D.js';
@@ -359,9 +359,9 @@
 			document.body.appendChild( container );
 
 			scene = new THREE.Scene();
-			scene.background = new THREE.Color( 0x444444 );
+			//scene.background = new THREE.Color( 0x444444 );
 
-			camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+			camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 100);
 			camera.position.set( 0, 1.2, 0.3 );
 
 			scene.add( new THREE.HemisphereLight( 0x808080, 0x606060 ) );
@@ -376,7 +376,7 @@
 			light.shadow.mapSize.set( 4096, 4096 );
 			scene.add( light );
 
-			renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.outputEncoding = THREE.sRGBEncoding;
@@ -386,7 +386,10 @@
 
 			container.appendChild( renderer.domElement );
 
-			document.body.appendChild( VRButton.createButton( renderer ) );
+			const sessionInit = {
+				requiredFeatures: ["hand-tracking", "local-floor"],
+			};
+			document.body.appendChild( ARButton.createButton( renderer, sessionInit ) );
 
 			// controllers
 			const controller1 = renderer.xr.getController( 0 );
@@ -417,15 +420,17 @@
 			hand2.add( handModel2 );
 			scene.add( hand2 );
 
-
-			// buttons
+			// floor
+			/*
 			const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
 			const floorMaterial = new THREE.MeshPhongMaterial( { color: 0x222222 } );
 			const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 			floor.rotation.x = - Math.PI / 2;
 			floor.receiveShadow = true;
 			scene.add( floor );
+			*/
 
+			// buttons
 			const consoleGeometry = new THREE.BoxGeometry( 0.5, 0.12, 0.15 );
 			const consoleMaterial = new THREE.MeshPhongMaterial( { color: 0x595959 } );
 			const consoleMesh = new THREE.Mesh( consoleGeometry, consoleMaterial );
