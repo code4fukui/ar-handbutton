@@ -439,15 +439,17 @@
 			consoleMesh.receiveShadow = true;
 			scene.add( consoleMesh );
 
-			const orangeButton = makeButtonMesh( 0.08, 0.1, 0.08, 0xffd3b5 );
+			const colors = [0x33ff33, 0xaaaa33, 0xff3333];
+
+			const orangeButton = makeButtonMesh( 0.08, 0.1, 0.08, colors[0]);
 			orangeButton.position.set( - 0.15, 0.04, 0 );
 			consoleMesh.add( orangeButton );
 
-			const pinkButton = makeButtonMesh( 0.08, 0.1, 0.08, 0xe84a5f );
+			const pinkButton = makeButtonMesh( 0.08, 0.1, 0.08, colors[1]);
 			pinkButton.position.set( - 0.05, 0.04, 0 );
 			consoleMesh.add( pinkButton );
 
-			const resetButton = makeButtonMesh( 0.08, 0.1, 0.08, 0x355c7d );
+			const resetButton = makeButtonMesh( 0.08, 0.1, 0.08, colors[2]);
 			resetButton.position.set( 0.05, 0.04, 0 );
 			consoleMesh.add( resetButton );
 			/*
@@ -514,7 +516,7 @@
 			obEntity.addComponent( Object3D, { object: orangeButton } );
 			const obAction = function () {
 
-				torusKnot.material.color.setHex( 0xffd3b5 );
+				torusKnot.material.color.setHex(colors[0]);
 
 			};
 
@@ -525,7 +527,7 @@
 			pbEntity.addComponent( Object3D, { object: pinkButton } );
 			const pbAction = function () {
 
-				torusKnot.material.color.setHex( 0xe84a5f );
+				torusKnot.material.color.setHex(colors[1]);
 
 			};
 
@@ -536,7 +538,7 @@
 			rbEntity.addComponent( Object3D, { object: resetButton } );
 			const rbAction = function () {
 
-				torusKnot.material.color.setHex( 0xffffff );
+				torusKnot.material.color.setHex(colors[2]);
 
 			};
 
