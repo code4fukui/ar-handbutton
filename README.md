@@ -1,5 +1,7 @@
 # AR-handbutton
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 AR-handbutton is a virtual reality (VR) hand button interaction demo built using Three.js and the WebXR API.
 
 ## Demo
