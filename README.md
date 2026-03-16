@@ -25,4 +25,4 @@ To run the project locally:
 2. Open the `index.html` file in a web browser.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+MIT License — see [LICENSE](LICENSE).
